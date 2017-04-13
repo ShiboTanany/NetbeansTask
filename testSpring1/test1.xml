@@ -1,0 +1,141 @@
+<?xml version = "1.0" encoding = "UTF-8"?>
+
+<beans xmlns = "http://www.springframework.org/schema/beans"
+       xmlns:xsi = "http://www.w3.org/2001/XMLSchema-instance"
+       xsi:schemaLocation = "http://www.springframework.org/schema/beans
+   http://www.springframework.org/schema/beans/spring-beans-3.0.xsd">
+    
+    <bean id="ref" class="testspring1.NewClass">
+        
+        <property name="id" value="12" ></property>
+        <property  name="name" value="shibo"></property>
+        <property name="profession" value="se"></property>
+    </bean>
+    
+    
+    <bean id="ref2" class="testspring1.NewClass">
+        
+        <constructor-arg value="shibo"  index="1" >          
+        </constructor-arg>
+        <constructor-arg value="5"  index="0" >          
+        </constructor-arg>
+        <constructor-arg value="software engineer"  index="2" >          
+        </constructor-arg>
+    </bean>
+    
+    
+    <bean id="ref3" class="testspring1.NewClass">
+        
+        <constructor-arg value="shibo"   >          
+        </constructor-arg>
+       
+        <constructor-arg value="software engineer" >          
+        </constructor-arg>
+    </bean>
+    
+    
+    <bean id="ref4" class="testspring1.NewClass">
+        
+        <constructor-arg value="shibo"   >          
+        </constructor-arg>
+       
+       
+    </bean>
+    
+    
+    <bean id="ref5" class="testspring1.NewClass"  factory-method="getInstance"><!--should  be static -->
+       
+    </bean>
+    <bean id="ref6" class="testspring1.NewClass">
+        <constructor-arg value="shibo"  index="1" >          
+        </constructor-arg>
+        <constructor-arg value="5"  index="0" >          
+        </constructor-arg>
+        <constructor-arg value="software engineer"  index="2" >          
+        </constructor-arg>
+       
+    </bean>
+    
+    <bean id="ref7" factory-bean="ref6"  factory-method="createInstance"><!--should not  be static -->
+       
+    </bean>
+    
+    
+    <bean  id="product"  class="testspring1.product"> 
+        <property name="id" value="12"></property>
+        <property name="name"  value="tomas" ></property>
+        <property name="manfName" value="hp"></property>
+<!--        <property name="productionDate" value="2010-01-31"></property>-->
+        <property name="price" value="15"></property>
+    
+    
+    </bean>
+    <bean  id="cust1" class="testspring1.Customer">
+        <constructor-arg value="5" index="0"  >          
+        </constructor-arg>
+        
+        <constructor-arg value="shiboo" index="1"  >          
+        </constructor-arg>
+        <constructor-arg value="12" index="2"  >          
+        </constructor-arg>
+        <constructor-arg ref="product" index="3"  >          
+        </constructor-arg>
+        
+           
+           
+    </bean>
+    
+    
+   
+    <bean  class="testspring1.parent" id="parent">
+        <property name="id" value="12"></property>
+        <property name="name"  value="tomas" ></property>
+        <property name="age" value="2"></property>
+
+         <property name="productionDate">
+            <bean factory-bean="dateFormater" factory-method="parse">
+                <constructor-arg value="23-03-1982" />
+            </bean>
+        </property>
+        
+    </bean>
+   <bean  class="testspring1.product" id="product2">
+        
+        
+        
+    </bean>
+    <bean class="testspring1.total" id="total">
+        
+        <constructor-arg ref="product" >          
+        </constructor-arg>
+        
+    </bean>
+    <bean class="testspring1.NewClass" id="ref55">
+        
+        <constructor-arg value="java developre"></constructor-arg>
+        <constructor-arg value="shibo"></constructor-arg>
+
+    </bean>
+    
+     <bean class="testspring1.total" id="total1">
+         
+        <constructor-arg ref="product" >          
+        </constructor-arg>
+        <constructor-arg ref="product" >          
+        </constructor-arg>
+       
+        
+        
+    </bean>
+      
+      
+      
+      
+      
+      
+     <bean id="dateFormater" class="java.text.SimpleDateFormat">
+        <constructor-arg value="dd-MM-yyyy" />
+    </bean>
+    
+
+</beans>
