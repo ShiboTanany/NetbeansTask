@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:aop="http://www.springframework.org/schema/aop"
+       xmlns:context="http://www.springframework.org/schema/context"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+          http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop-4.2.xsd
+          http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.2.xsd
+">
+
+    <bean class="com.mycompany.tuesaop1.CalculatorImp" id="calculator" ></bean>
+    <bean class="com.mycompany.tuesaop1.ShiboCalculator" id="calculator2" ></bean>
+    <bean class="com.mycompany.tuesaop1.advices.LogAfter" id="logAfter" ></bean>
+    <bean class="com.mycompany.tuesaop1.advices.LogBefore" id="logBefore" ></bean>
+    <bean class="com.mycompany.tuesaop1.advices.AroundLog" id="aroundLog" ></bean>
+    <bean id="customerAdvisor"
+		class="org.springframework.aop.support.NameMatchMethodPointcutAdvisor">
+		<property name="mappedName" value="divide" />
+		<property name="advice" ref="aroundLog" />
+	</bean>
+    
+    <bean class="org.springframework.aop.framework.autoproxy.DefaultAdvisorAutoProxyCreator" >
+        
+        
+    </bean>
+    
+<!--    <bean id="pointcut"  class="org.springframework.aop.support.NameMatchMethodPointcut">
+        <property name="mappedName" value="divide"></property>
+    </bean>
+    <bean id="pointcutdivide"  class="org.springframework.aop.support.NameMatchMethodPointcut">
+        <property name="mappedName" value="divide"></property>
+    </bean>
+    
+    
+    <bean id="pointcutAdvisor" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+        <property name="pointcut" ref="pointcutdivide"></property>
+        <property name="advice" ref="aroundLog"></property>
+    </bean>
+    <bean id="pointcutAdvisor2" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+        <property name="pointcut" ref="pointcut"></property>
+        <property name="advice" ref="logAfter"></property>
+    </bean>
+    <bean id="pointcutAdvisor3" class="org.springframework.aop.support.DefaultPointcutAdvisor">
+        <property name="pointcut" ref="pointcut"></property>
+        <property name="advice" ref="logBefore"></property>
+    </bean>
+        -->
+
+<!--    <bean id="proxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+        
+        <property name="target" ref="calculator"></property>
+        <property name="interceptorNames">
+            <list>
+                <value>pointcutAdvisor</value>
+                <value>pointcutAdvisor2</value>
+                <value>pointcutAdvisor3</value>
+            </list>
+        </property>
+    </bean>-->
+    <!--    
+<bean id="proxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+    <property name="proxyInterfaces">
+        <list>
+            <value>com.mycompany.tuesaop1.Calculator</value>
+        </list>
+    </property>
+    <property name="target" ref="calculator"></property>
+    <property name="interceptorNames">
+        <list>
+            <value>logAfter</value>
+            <value>logBefore</value>
+            <value>aroundLog</value>
+        </list>
+    </property>
+</bean>
+    -->
+        
+
+</beans>
