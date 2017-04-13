@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+
+       xsi:schemaLocation="http://www.springframework.org/schema/beans 
+http://www.springframework.org/schema/beans/spring-beans-4.2.xsd
+http://www.springframework.org/schema/context     http://www.springframework.org/schema/context/spring-context.xsd" default-init-method="Cu">
+    <!--<context:property-placeholder location="classpath:test.properties"/>-->
+    
+    <bean  id="p" class="com.mycompany.springtestsat1.Customer" scope="prototype"     lazy-init="false" >
+        <property name="id"  value="12"></property>
+    </bean>
+    
+    
+    <bean id="Product" class="com.mycompany.springtestsat1.Product"     >
+        <property name="id" value="25" /> 
+        <property name="name"  value="antosede" /> 
+        <property name="price"  value="35" /> 
+    </bean>
+    <bean id="Product2" class="com.mycompany.springtestsat1.Product"   parent="Product" init-method="init"  destroy-method="close" >
+         <property name="name"  value="antoseddsds e" /> 
+    </bean>
+</beans>

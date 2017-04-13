@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<html>
+    <head>
+        <script type="text/javascript">
+            
+            var req = null;
+            var req2=null;
+            function submitForm() {
+                
+                if (window.XMLHttpRequest)
+                    req = new XMLHttpRequest();
+                else if (window.ActiveXObject)
+                    req = new ActiveXObject(Microsoft.XMLHTTP);
+                req.onreadystatechange = handleReq;
+                req.open("GET", "check?username="+document.getElementById("username").value, true);
+                  req.send(null);
+            }
+             function submitForm2() {
+                
+                if (window.XMLHttpRequest)
+                    req = new XMLHttpRequest();
+                else if (window.ActiveXObject)
+                    req = new ActiveXObject(Microsoft.XMLHTTP);
+                req.onreadystatechange = handleReq2;
+                req.open("GET", "test.txt", true);
+                  req.send(null);
+            }
+             function submitForm3() {
+                
+                if (window.XMLHttpRequest)
+                    req = new XMLHttpRequest();
+                else if (window.ActiveXObject)
+                    req = new ActiveXObject(Microsoft.XMLHTTP);
+                req.onreadystatechange = handleReq3;
+                req.open("GET", "check.html?date="+Date(), true);
+                  req.send(null);
+            }
+             function handleReq2()
+            {
+               // alert("kdjskjd"+req.readyState);
+                if (req.readyState == 4
+                    &&req.status == 200)
+            {
+                     //alert("dsdsdss"+req.responseText);
+                     
+                     document.getElementById("test").value=  req.responseText;
+//                    else
+//                        document.ajax.dyn.value = "Error code " + req.status;
+            }
+
+            }
+             function handleReq3()
+            {
+               // alert("kdjskjd"+req.readyState);
+                if (req.readyState == 4
+                    &&req.status == 200)
+            {
+                     //alert("dsdsdss"+req.responseText);
+                     
+                     document.getElementById("table").innerHTML=  req.responseText;
+//                    else
+//                        document.ajax.dyn.value = "Error code " + req.status;
+            }
+
+            }
+            function handleReq()
+            {
+               // alert("kdjskjd"+req.readyState);
+                if (req.readyState == 4
+                    &&req.status == 200)
+            {
+                    // alert("dsdsdss"+req.responseText);
+                     
+                     document.getElementById("check").innerText=  req.responseText;
+//                    else
+//                        document.ajax.dyn.value = "Error code " + req.status;
+            }
+
+            }
+            
+            
+        </script>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+        <title>JSP Page</title>
+    </head>
+    <body  onload="setInterval('submitForm3();',2000)">
+        <form >
+            <label>username</label>:<input type="text" id="username" name="username" onblur="submitForm();"/><label id="check">sdskdslk</label><br>
+            <label>username</label>:<input type="password" name="password"/><br>
+            <input type="submit" name="submit"/>
+        </form>
+        
+        
+        <label>content</label>:<input id="test" type="text" /><br>
+        <input type="submit" name="submit" onclick="submitForm2();"/>
+        <div id="table"></div>
+    </body>
+</html>
+

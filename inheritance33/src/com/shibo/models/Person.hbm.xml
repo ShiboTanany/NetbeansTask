@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<!-- Generated Mar 22, 2017 9:43:59 AM by Hibernate Tools 4.3.1 -->
+<hibernate-mapping package="com.shibo.models">
+    <class name="Person" table="person">
+        
+        <id name="id" column="id">
+            <generator class="increment"/>
+        </id>
+        <discriminator column="person_type" type="string"></discriminator>
+        <property name="firstName" column="first_name"></property>
+        <property name="lastName" column="last_name"></property>
+      
+          
+    </class>
+    
+    <subclass name="Student" extends="Person"
+              discriminator-value="Student">
+        <property name="department" column="department"></property>
+    </subclass>
+    <subclass name="Teacher" extends="Person"
+              discriminator-value="Teacher">
+        <property name="hireDate" column="hire_date"
+                  type="date">
+        </property>
+    </subclass>
+    
+</hibernate-mapping>
